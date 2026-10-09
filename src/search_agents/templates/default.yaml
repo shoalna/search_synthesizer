@@ -1,0 +1,19 @@
+# Built-in SearchAssignment template. `{keyword}` is replaced by the user keyword.
+search_assignments:
+  - assignment_id: historical_etf_impact
+    required: true
+    objective: >
+      ETF分配金発生時の{keyword}株価への過去影響を調査する。
+      影響時期、影響期間、値動きの大きさを確認する。
+      ETF分配金の規模と株価への影響度の関係を調査し、過去の規模と比較し{keyword}への影響度を確認する。
+      同一セクター企業に対するETF分配金発生時の影響を比較する。
+
+  - assignment_id: iran_effect
+    required: true
+    objective: >
+      現在のイラン情勢変化を確認する。過去も同じ変化があるとき、株市場と{keyword}への影響を確認する。
+
+  - assignment_id: america_effect
+    required: true
+    objective: >
+      昨日のアメリカ株の状況を調査する。アメリカ同セクターの会社の株価変化は{keyword}にどのような影響があるか調査する。

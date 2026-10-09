@@ -1,0 +1,37 @@
+[project]
+name = "search-agents"
+version = "0.1.0"
+description = "Multi-agent web search that synthesizes retrieved evidence into a cited report"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "pydantic>=2.7",
+    "pyyaml>=6.0",
+]
+
+[project.scripts]
+search-agents = "search_agents.cli:main"
+
+[dependency-groups]
+dev = [
+    "pyright>=1.1.380",
+    "pytest>=8.0",
+    "types-pyyaml>=6.0",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/search_agents"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["tests"]
+
+[tool.pyright]
+include = ["src", "tests"]
+typeCheckingMode = "strict"
+venvPath = "."
+venv = ".venv"
