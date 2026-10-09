@@ -48,7 +48,8 @@ def test_report_shows_each_assignment_status(tmp_path: Path) -> None:
     result = json.loads((out_dir / "result.json").read_text(encoding="utf-8"))
     for assignment in result["assignments"]:
         assert assignment["assignment_id"] in report
-    assert "COMPLETE" in report
+    assert "**complete**" in report
+    assert "COMPLETE" not in report
 
 
 def test_unknown_provider_fails_listing_registered_providers(

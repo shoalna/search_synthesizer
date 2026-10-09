@@ -22,7 +22,7 @@ def render_report(result: TaskResult) -> str:
         "## Summary",
         "",
         f"- Task: `{result.task_id}`",
-        f"- Status: **{result.status.name}**",
+        f"- Status: **{result.status.value}**",
         f"- Search provider: `{result.provider}`",
         f"- Assignments: {len(result.assignments)}",
         f"- Agent turns: {len(result.agent_turns)}",
@@ -63,7 +63,7 @@ def render_report(result: TaskResult) -> str:
         lines.append(
             f"| {assignment.assignment_id} "
             f"| {'yes' if assignment.required else 'no'} "
-            f"| {assignment.status.name} "
+            f"| {assignment.status.value} "
             f"| {_reason(assignment)} "
             f"| {turn_counts.get(assignment.assignment_id, 0)} "
             f"| {len(assignment_documents)} "
@@ -81,14 +81,14 @@ def _has_gap(assignment: SearchAssignment) -> bool:
 
 def _gap(assignment: SearchAssignment) -> str:
     return (
-        f"- `{assignment.assignment_id}`: {assignment.status.name} ({_reason(assignment)}). "
+        f"- `{assignment.assignment_id}`: {assignment.status.value} ({_reason(assignment)}). "
         "No complete set of material evidence was retrieved within this search's policy and budget. "
         f"{_NOT_PROOF_OF_ABSENCE}"
     )
 
 
 def _reason(assignment: SearchAssignment) -> str:
-    return assignment.termination_reason.name if assignment.termination_reason else "-"
+    return assignment.termination_reason.value if assignment.termination_reason else "-"
 
 
 def _one_line(text: str) -> str:

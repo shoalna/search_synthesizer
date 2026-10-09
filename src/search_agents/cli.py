@@ -75,5 +75,5 @@ def main(argv: Sequence[str] | None = None) -> int:
 
     (out_dir / RESULT_FILE).write_text(result.model_dump_json(indent=2) + "\n", encoding="utf-8")
     (out_dir / REPORT_FILE).write_text(render_report(result), encoding="utf-8")
-    print(f"{result.status.name}: {out_dir / REPORT_FILE}")
+    print(f"{result.status.value}: {out_dir / REPORT_FILE}")
     return 0

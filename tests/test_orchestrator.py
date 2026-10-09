@@ -214,11 +214,12 @@ def test_report_names_search_gaps_without_claiming_the_facts_do_not_exist(
 
     report = render_report(result)
 
-    assert "PARTIAL" in report
+    assert "**partial**" in report
+    assert "PARTIAL" not in report
     gaps = report.split("## Search Gaps")[1].split("\n## ")[0]
     assert "a" not in [line.split("`")[1] for line in gaps.splitlines() if line.startswith("- `")]
-    assert "`b`" in gaps and "NO_MATERIAL_EVIDENCE" in gaps
-    assert "`c`" in gaps and "TIMEOUT" in gaps
+    assert "`b`" in gaps and "complete (no_material_evidence)" in gaps
+    assert "`c`" in gaps and "partial (timeout)" in gaps
     assert "does not establish that no such facts exist" in gaps
 
 
